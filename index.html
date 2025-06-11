@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe a senha</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+
+        input {
+            height: 40px;
+            width: 300px;
+            border-radius: 30px;
+            border-color: black;
+            border-style: groove;
+            align-self: center;
+            transition: 1s;
+        }
+        input::placeholder{
+            font-style: bold;
+            font-size: 15px;
+            padding: 5px;
+        }
+        input:hover{
+            background-color: rgb(255, 255, 255);
+            transform: scale(1.02);
+            transition: 1s;
+        }
+        button{
+            border-radius: 10px;
+            height: 42px;
+            font-size: large;
+            transition: 1s;
+        }
+        button:hover{
+            background-color: rgb(255, 255, 255);
+            transform: scale(1.05);
+            transition: 1s;
+        }
+    </style>
+</head>
+
+<body>
+        <img id="goku" class="goku" src="" alt="" >
+    <div id="main">
+        <h1 id="titulo">Seja bem-vindo ao site</h1>
+        <input id="resposta" type="text" placeholder="Tente adivinhar a senha">
+        <button id="testar" onclick="testar()">Testar</button>
+        <p id="dica1"></p>
+        <audio id="meuAudio" src="musica.mp3" hidden></audio>
+
+    </div>
+</body>
+<script>
+    let tentativa = 0;
+    const respostaInput = document.getElementById("resposta")
+    const senha = "Goku Pelado"
+    const dica = document.getElementById("dica1")
+    function testar() {
+        tentativa++
+        let resposta = respostaInput.value
+        if(resposta != senha) {
+            document.getElementById("titulo").innerHTML = "Tente novamente"
+            console.log(resposta)
+        } else {
+            document.getElementById("main").style.display = "none"
+            var img = document.getElementById("goku")
+            img.src = 'sussy-goku.png'
+            const audio = document.getElementById("meuAudio")
+            audio.play()
+        }
+        if(tentativa == 2) {
+            dica.innerHTML = "G__U   P_____"
+        } else if(tentativa == 3) {
+            dica.innerHTML = "G__U   P_L___"
+        } else if (tentativa >= 4) {
+            dica.innerHTML = "G__U   P_L_DO"
+            document.getElementById("titulo").innerHTML = "Burro pra caralho"
+        }
+    }
+</script>
+</html>
